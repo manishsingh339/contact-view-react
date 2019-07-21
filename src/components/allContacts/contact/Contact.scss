@@ -1,0 +1,23 @@
+.contact-container {
+    .user-photo {
+        height: 75px;
+        max-width: 75px;
+    }
+    .user-name-initial {
+        height: 75px;
+        max-width: 75px;
+        width: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        font-weight: 500;
+        background: #294546;
+        color: #fff;
+    }
+    .action {
+        width: 160px;
+        display: table-caption;
+        border: none;
+    }
+}

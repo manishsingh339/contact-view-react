@@ -4,8 +4,7 @@ import AllContacts from './components/allContacts/AllContacts';
 
 const App = (props) => {
     return (
-        <div>
-            Hello World
+        <div className="container">
             <AllContacts />
         </div>
     )
