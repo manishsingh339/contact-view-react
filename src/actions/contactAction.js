@@ -3,7 +3,9 @@ import axios from 'axios';
 const API = {
 	BASE_URL: "http://localhost:8081/contact_view-1",
 	GET_ALL_CONTACTS_URL: "/contact/all",
-	CALL_BY_NUMBER: "/contact/usagesByNumber"	
+	CALL_BY_NUMBER: "/contact/usagesByNumber",
+	USAGES_REPORT_BY_MONTH: "/contact/usagesReportByMonth",
+	ALL_USAGES_BY_MONTH: "/contact/usagesByMonth",	
 }
 
 export const getAllContacts = () => {
@@ -26,7 +28,6 @@ export const getAllContacts = () => {
 
 export const getAllCallsByNumber = (number) => {
 	return (dispatch) => {
-		//console.log("ENTER");
 		let url = API.BASE_URL + API.CALL_BY_NUMBER+`?number=${number}`;
 		const promise = axios.get(url);
 		return promise.then(response => {
@@ -42,3 +43,40 @@ export const getAllCallsByNumber = (number) => {
 		})
 	}
 };
+
+export const getMonthlyCallReport = (month) => {
+	return (dispatch) => {
+		//console.log("ENTER");
+		let url = API.BASE_URL + API.USAGES_REPORT_BY_MONTH+`?month=${month}`;
+		const promise = axios.get(url);
+		return promise.then(response => {
+			dispatch({
+				type: 'USAGES_REPORT_BY_MONTH_SUCCESS',				
+				list: response.data
+			});
+		}).catch(error => {
+			dispatch({
+				type: 'USAGES_REPORT_BY_MONTH_ERROR',
+				list: null
+			});
+		})
+	}
+}
+
+export const getAllMonthlyUsages = (month) => {
+	return (dispatch) => {
+		let url = API.BASE_URL + API.ALL_USAGES_BY_MONTH+`?month=${month}`;
+		const promise = axios.get(url);
+		return promise.then(response => {
+			dispatch({
+				type: 'ALL_USAGES_BY_MONTH_SUCCESS',				
+				list: response.data
+			});
+		}).catch(error => {
+			dispatch({
+				type: 'ALL_USAGES_BY_MONTH_ERROR',
+				list: null
+			});
+		})
+	}
+}

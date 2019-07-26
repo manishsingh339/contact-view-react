@@ -21,6 +21,26 @@ const contacts = (state = {}, action) => {
         userCalls: null
       }
     }
+    case 'USAGES_REPORT_BY_MONTH_SUCCESS':
+      return {
+        ...state,
+        monthlyCallReport: action.list
+      }
+    case 'USAGES_REPORT_BY_MONTH_ERROR': 
+      return {
+        ...state,
+        monthlyCallReport: null
+      }
+    case 'ALL_USAGES_BY_MONTH_SUCCESS': 
+      return {
+        ...state,
+        monthlyAllCallReport: action.list
+      }
+    case 'ALL_USAGES_BY_MONTH_ERROR': 
+      return {
+        ...state,
+        monthlyAllCallReport: null
+      }
     default:
       return state
   }
