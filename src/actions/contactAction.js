@@ -2,18 +2,9 @@ import axios from 'axios';
 
 const API = {
 	BASE_URL: "http://localhost:8081/contact_view-1",
-	GET_ALL_CONTACTS_URL: "/contact/all"
+	GET_ALL_CONTACTS_URL: "/contact/all",
+	CALL_BY_NUMBER: "/contact/usagesByNumber"	
 }
-
-const fetchAllContactsError = () => ({
-	type: 'FETCH_ALL_CONTACTS_ERROR',
-	allContacts: {}
-});
-
-const fetchAllContactsSuccess = (allContacts) => ({
-	type: 'FETCH_ALL_CONTACTS_SUCCESS',
-	allContacts
-});
 
 export const getAllContacts = () => {
 	return (dispatch) => {
@@ -28,6 +19,25 @@ export const getAllContacts = () => {
 			dispatch({
 				type: 'FETCH_ALL_CONTACTS_ERROR',
 				allContacts: {}
+			});
+		})
+	}
+};
+
+export const getAllCallsByNumber = (number) => {
+	return (dispatch) => {
+		//console.log("ENTER");
+		let url = API.BASE_URL + API.CALL_BY_NUMBER+`?number=${number}`;
+		const promise = axios.get(url);
+		return promise.then(response => {
+			dispatch({
+				type: 'CALL_BY_NUMBER_SUCCESS',				
+				list: response.data
+			});
+		}).catch(error => {
+			dispatch({
+				type: 'CALL_BY_NUMBER_ERROR',
+				list: null
 			});
 		})
 	}

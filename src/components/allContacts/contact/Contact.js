@@ -13,7 +13,7 @@ const Contact = (props) => {
             </td>                            
             <td className="col">{(props.contact && props.contact.phone1Value) ? props.contact.phone1Value : ""}</td>
             <td className="col action">
-                <a href="/userCallDetails">View All Calls</a>
+                <a href={`/userCallDetails/91${props.contact.phone1Value}`}>View All Calls</a>
             </td>
         </tr>
     )

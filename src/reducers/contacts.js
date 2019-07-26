@@ -10,6 +10,17 @@ const contacts = (state = {}, action) => {
         ...state,
         allContacts: {}
       }
+    case 'CALL_BY_NUMBER_SUCCESS': 
+      return {
+        ...state,
+        userCalls: action.list
+      }
+    case 'CALL_BY_NUMBER_ERROR': {
+      return {
+        ...state,
+        userCalls: null
+      }
+    }
     default:
       return state
   }

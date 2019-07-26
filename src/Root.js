@@ -10,7 +10,7 @@ const Root = ({ store }) => (
   <Provider store={store}>
     <Router>
       <Route path="/" component={App} exact />
-      <Route path="/userCallDetails" component={UserCallContainer} />      
+      <Route path="/userCallDetails/:contactNumber" component={UserCallContainer} />      
     </Router>
   </Provider>
 )
